@@ -29,7 +29,20 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        binding.message.text = viewModel.getWindSpeed().value.toString()
+        viewModel.oneCallState.observe(this) { oneCallState ->
+            binding.viewFlipper.displayedChild = stateToFlipper(oneCallState)
+            when(oneCallState) {
+                Loading -> {}
+                is Content -> {
+                    binding.windSpeed.text = oneCallState.windSpeed
+                    binding.windGust.text = oneCallState.windGust
+                    binding.alertDescription.text = oneCallState.alertDescription
+                }
+                is Error -> {
+                    binding.errorMessage.text = oneCallState.message
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -37,4 +50,12 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
+}
+
+fun stateToFlipper(state: OneCallState): Int {
+    return when (state) {
+        Loading -> 0
+        is Content -> 1
+        is Error -> 2
+    }
 }

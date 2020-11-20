@@ -19,20 +19,26 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            Factory(requireActivity().application)
+        ).get(MainViewModel::class.java)
 
         viewModel.oneCallState.observe(this) { oneCallState ->
             binding.viewFlipper.displayedChild = stateToFlipper(oneCallState)
-            when(oneCallState) {
-                Loading -> {}
+            when (oneCallState) {
+                Loading -> {
+                }
                 is Content -> {
                     binding.windSpeed.text = oneCallState.windSpeed
                     binding.windGust.text = oneCallState.windGust

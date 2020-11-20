@@ -58,7 +58,7 @@ class MainFragment : Fragment() {
 
 }
 
-fun stateToFlipper(state: OneCallState): Int {
+fun stateToFlipper(state: WeatherState): Int {
     return when (state) {
         Loading -> 0
         is Content -> 1

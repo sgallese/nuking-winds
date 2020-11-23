@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_flipper"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/weather_loading"
+        layout="@layout/weather_loading" />
+
+    <include
+        android:id="@+id/weather_content"
+        layout="@layout/weather_content" />
+
+    <include
+        android:id="@+id/weather_error"
+        layout="@layout/weather_error" />
+
+</ViewFlipper>

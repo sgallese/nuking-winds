@@ -3,4 +3,10 @@
     <string name="alerts">Alerts</string>
     <string name="wind_gust">Wind Gust</string>
     <string name="wind_speed">Wind Speed</string>
+    <string name="lat_label">Lat</string>
+    <string name="lon_label">Lon</string>
+    <string name="get_weather">Get Weather</string>
+    <string name="default_lat">38.056017</string>
+    <string name="default_lon">-121.788563</string>
+    <string name="reload">Reload</string>
 </resources>
